@@ -11,6 +11,7 @@ Linux?
 Role Variables
 --------------
 
+```
 # -------------
 # version
 # -------------
@@ -34,6 +35,7 @@ rutorrent_path_curl: /usr/bin/curl
 rutorrent_path_gzip:
 rutorrent_path_id:
 rutorrent_path_stat: /usr/bin/stat
+```
 
 Dependencies
 ------------
