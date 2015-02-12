@@ -1,31 +1,52 @@
-Role Name
+rutorrent
 =========
 
-A brief description of the role goes here.
+Downloads and installs the rutorrent php code. Configures config.php by template.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Linux?
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+# -------------
+# version
+# -------------
+rutorrent_version: 3.6
+# -------------
+# urls
+# -------------
+rutorrent_url_download: http://dl.bintray.com/novik65/generic/
+# -------------
+# directory settings
+# -------------
+rutorrent_directory_src_download: ~/Downloads/
+rutorrent_directory_install: /var/www/
+rutorrent_directory_install_group: www-data
+rutorrent_directory_install_owner: www-data
+# -------------
+# bin path settings
+# -------------
+rutorrent_path_php: 
+rutorrent_path_curl: /usr/bin/curl
+rutorrent_path_gzip:
+rutorrent_path_id:
+rutorrent_path_stat: /usr/bin/stat
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None.
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
+    - hosts: torrent-servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - role: ansible-role-rutorrent
+            
 
 License
 -------
@@ -35,4 +56,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Prescott Chris
