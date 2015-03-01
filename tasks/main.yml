@@ -17,11 +17,17 @@
 # -------------
 # Download, install, & config  RUTorrent
 # -------------
+- name: ensure download destination writable
+  file: >
+    path={{ rutorrent_download_dest }}
+    state=directory
+    mode="u=rw,g=r,o=r"
+
 - name: ensure downloaded src
   sudo: No
   get_url: >
     url={{ rutorrent_download_url }}
-    dest={{ rutorrent_download_dest }}
+    dest={{ rutorrent_download_dest }}/{{ rutorrent_version }}.tar.gz
   
 - name: ensure install directory exists
   sudo: Yes
@@ -32,7 +38,7 @@
 - name: ensure untarred files to install directory
   sudo: Yes
   command: >
-    tar xvf {{ rutorrent_download_dest }} -C {{ rutorrent_dir_install }} --strip-components=1
+    tar xvf {{ rutorrent_download_dest }}/{{ rutorrent_version }}.tar.gz -C {{ rutorrent_dir_install }} --strip-components=1
     creates={{ rutorrent_dir_install }}
 
 - name: ensure we have bin locations set by template
