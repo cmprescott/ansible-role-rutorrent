@@ -39,7 +39,7 @@
   sudo: Yes
   command: >
     tar xvf {{ rutorrent_download_dest }}/{{ rutorrent_version }}.tar.gz -C {{ rutorrent_dir_install }} --strip-components=1
-    creates={{ rutorrent_dir_install }}
+    creates={{ rutorrent_dir_install }}/conf
 
 - name: ensure we have bin locations set by template
   sudo: Yes
