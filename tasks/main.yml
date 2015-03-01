@@ -22,9 +22,9 @@
     path={{ rutorrent_download_dest }}
     state=directory
     mode="u=rw,g=r,o=r"
+    owner={{ ansible_ssh_user }}
 
 - name: ensure downloaded src
-  sudo: No
   get_url: >
     url={{ rutorrent_download_url }}
     dest={{ rutorrent_download_dest }}/{{ rutorrent_version }}.tar.gz
@@ -54,5 +54,5 @@
     state=directory
     group={{ rutorrent_dir_install_group }}
     owner={{ rutorrent_dir_install_owner }}
-    recurse=yes
+    recurse=Yes
     
