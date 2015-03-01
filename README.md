@@ -15,18 +15,18 @@ Role Variables
 # -------------
 # version
 # -------------
-rutorrent_version: 3.6
+rutorrent_version: rutorrent-3.6
 # -------------
-# urls
+# download
 # -------------
-rutorrent_url_download: http://dl.bintray.com/novik65/generic/
+rutorrent_download_url: http://dl.bintray.com/novik65/generic/{{ rutorrent_version }}.tar.gz
+rutorrent_download_dest: ~/Downloads/{{ rutorrent_version }}.tar.gz
 # -------------
-# directory settings
+# dir settings
 # -------------
-rutorrent_directory_src_download: ~/Downloads/
-rutorrent_directory_install: /var/www/
-rutorrent_directory_install_group: www-data
-rutorrent_directory_install_owner: www-data
+rutorrent_dir_install: /var/www/rutorrent
+rutorrent_dir_install_group: www-data
+rutorrent_dir_install_owner: www-data
 # -------------
 # bin path settings
 # -------------

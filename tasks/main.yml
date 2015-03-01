@@ -17,36 +17,36 @@
 # -------------
 # Download, install, & config  RUTorrent
 # -------------
-- name: ensure downloaded ruTorrent
+- name: ensure downloaded src
   sudo: No
   get_url: >
-    url={{ rutorrent_url_download }}rutorrent-{{ rutorrent_version }}.tar.gz
-    dest={{ rutorrent_directory_src_download }}
+    url={{ rutorrent_download_url }}
+    dest={{ rutorrent_download_dest }}
   
-
-- name: ensure untarred files to {{ rutorrent_directory_install }}
-  sudo: Yes
-  command: >
-    sudo tar xvf {{ rutorrent_directory_src_download }}rutorrent-{{ rutorrent_version }}.tar.gz -C {{ rutorrent_directory_install }}rutorrent
-    creates={{ rutorrent_directory_install }}rutorrent
-  
-
-- name: ensure www-data owns ruTorrent application
+- name: ensure install directory exists
   sudo: Yes
   file: >
-    path={{ rutorrent_directory_install }}rutorrent
+    path={{ rutorrent_dir_install }}
     state=directory
-    group={{ rutorrent_directory_install_group }}
-    owner={{ rutorrent_directory_install_owner }}
-    recurse=yes
-  
 
-# ------------------
-# Bin settings
-# ------------------
+- name: ensure untarred files to install directory
+  sudo: Yes
+  command: >
+    tar xvf {{ rutorrent_download_dest }} -C {{ rutorrent_dir_install }} --strip-components=1
+    creates={{ rutorrent_dir_install }}
+
 - name: ensure we have bin locations set by template
   sudo: Yes
   template: >
     src=config.php.j2
-    dest={{ rutorrent_directory_install }}rutorrent/conf/config.php
+    dest={{ rutorrent_dir_install }}/conf/config.php
+
+- name: ensure www-data owns all files in install directory
+  sudo: Yes
+  file: >
+    path={{ rutorrent_dir_install }}
+    state=directory
+    group={{ rutorrent_dir_install_group }}
+    owner={{ rutorrent_dir_install_owner }}
+    recurse=yes
     
