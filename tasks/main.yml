@@ -4,6 +4,7 @@
 # -------------
 # Download/install dependency programs
 # -------------
+# TODO figure out if this is really needed...
 - name: ensure unzip, unrar, curl present
   sudo: Yes
   apt: >
