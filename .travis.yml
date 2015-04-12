@@ -7,5 +7,5 @@ before_install:
 install:
   - sudo apt-get install ansible
 script:
-  - ansible-playbook -i tests/inventory --syntax-check --list-tasks tests/test.yml -e "role_name=ansible-role-rutorrent" -e "hosts_group=hosts_group"
-  - ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo
+  - ansible-playbook -i tests/inventory tests/test.yml --syntax-check --list-tasks
+  - ansible-playbook -i tests/inventory tests/test.yml --connection=local
