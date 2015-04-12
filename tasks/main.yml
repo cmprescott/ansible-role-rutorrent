@@ -18,13 +18,6 @@
 # -------------
 # Download, install, & config  RUTorrent
 # -------------
-- name: ensure download destination writable
-  file:
-    path: "{{ rutorrent_download_dest }}"
-    state: directory
-    mode: "u=rwx,g=r,o=r"
-    owner: "{{ ansible_ssh_user }}"
-
 - name: ensure downloaded src
   get_url:
     url: "{{ rutorrent_download_url }}"
