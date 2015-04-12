@@ -34,7 +34,7 @@ rutorrent_dir_install_owner: www-data
 rutorrent_path_php: 
 rutorrent_path_curl: /usr/bin/curl
 rutorrent_path_gzip:
-rutorrent_path_id:
+rutorrent_path_id: /usr/bin/id
 rutorrent_path_stat: /usr/bin/stat
 ```
 
