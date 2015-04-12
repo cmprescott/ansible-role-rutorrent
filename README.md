@@ -2,12 +2,12 @@ Ansible Role: ruTorrent
 =========
 [![Build Status](https://travis-ci.org/cmprescott/ansible-role-rutorrent.svg?branch=master)](https://travis-ci.org/cmprescott/ansible-role-rutorrent)
 
-Downloads and installs the rutorrent php code. Configures config.php by template.
+Downloads and installs the rutorrent php code. Templates config.php.
 
 Requirements
 ------------
 
-Linux?
+Unix system with php, and a webserver.
 
 Role Variables
 --------------
