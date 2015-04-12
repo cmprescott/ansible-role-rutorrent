@@ -2,20 +2,6 @@
 # tasks file for ansible-role-rutorrent
 
 # -------------
-# Download/install dependency programs
-# -------------
-# TODO figure out if this is really needed...
-- name: ensure unzip, unrar, curl present
-  sudo: Yes
-  apt:
-    name: "{{ item }}"
-    state: present
-  with_items:
-   - unzip
-   - unrar
-   - curl
-
-# -------------
 # Download, install, & config  RUTorrent
 # -------------
 - name: ensure downloaded src
