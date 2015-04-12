@@ -46,10 +46,11 @@ None.
 Example Playbook
 ----------------
 
-    - hosts: torrent-servers
-      roles:
-         - role: ansible-role-rutorrent
-            
+```yaml
+- hosts: torrent-servers
+  roles:
+     - role: cmprescott.ruTorrent
+```
 
 License
 -------
