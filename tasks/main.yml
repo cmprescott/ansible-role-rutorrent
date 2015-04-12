@@ -1,60 +1,14 @@
 ---
 # tasks file for ansible-role-rutorrent
 
-# -------------
-# Download/install dependency programs
-# -------------
-# TODO figure out if this is really needed...
-- name: ensure unzip, unrar, curl present
-  sudo: Yes
-  apt:
-    name: "{{ item }}"
-    state: present
-  with_items:
-   - unzip
-   - unrar
-   - curl
 
-# -------------
-# Download, install, & config  RUTorrent
-# -------------
-- name: ensure download destination writable
-  file:
-    path: "{{ rutorrent_download_dest }}"
-    state: directory
-    mode: "u=rwx,g=r,o=r"
-    owner: "{{ ansible_ssh_user }}"
+- name: check for current installation
+  stat: "path={{ rutorrent_dir_install }}/conf"
+  register: rutorrent_conf
 
-- name: ensure downloaded src
-  get_url:
-    url: "{{ rutorrent_download_url }}"
-    dest: "{{ rutorrent_download_dest }}/{{ rutorrent_version }}.tar.gz"
-  
-- name: ensure install directory exists
-  sudo: Yes
-  file:
-    path: "{{ rutorrent_dir_install }}"
-    state: directory
 
-- name: ensure untarred files to install directory
-  sudo: Yes
-  command: tar xvf {{ rutorrent_version }}.tar.gz -C {{ rutorrent_dir_install }} --strip-components=1
-  args:
-    chdir: "{{ rutorrent_download_dest }}"
-    creates: "{{ rutorrent_dir_install }}/conf"
+- include: setup.yml
+  when: not rutorrent_conf.stat.exists
 
-- name: ensure we have bin locations set by template
-  sudo: Yes
-  template:
-    src: config.php.j2
-    dest: "{{ rutorrent_dir_install }}/conf/config.php"
 
-- name: ensure www-data owns all files in install directory
-  sudo: Yes
-  file:
-    path: "{{ rutorrent_dir_install }}"
-    state: directory
-    group: "{{ rutorrent_dir_install_group }}"
-    owner: "{{ rutorrent_dir_install_owner }}"
-    recurse: Yes
-    
+- include: configuration.yml

@@ -1,0 +1,18 @@
+---
+# ansible-role-rutorrent/tasks/configuration.yml
+
+- name: ensure we have bin locations set by template
+  sudo: Yes
+  template:
+    src: config.php.j2
+    dest: "{{ rutorrent_dir_install }}/conf/config.php"
+
+
+- name: ensure www-data owns all files in install directory
+  sudo: Yes
+  file:
+    path: "{{ rutorrent_dir_install }}"
+    state: directory
+    group: "{{ rutorrent_dir_install_group }}"
+    owner: "{{ rutorrent_dir_install_owner }}"
+    recurse: Yes

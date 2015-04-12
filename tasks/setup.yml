@@ -1,0 +1,22 @@
+---
+# ansible-role-rutorrent/tasks/setup.yml
+
+
+- name: download rutorrent src
+  get_url:
+    url: "{{ rutorrent_download_url }}"
+    dest: "{{ rutorrent_download_dest }}"
+
+
+- name: ensure install directory exists
+  sudo: Yes
+  file:
+    path: "{{ rutorrent_dir_install }}"
+    state: directory
+
+
+- name: ensure untarred files to install directory
+  sudo: Yes
+  command: tar xvf {{ rutorrent_download_dest }} -C {{ rutorrent_dir_install }} --strip-components=1
+  args:
+    creates: "{{ rutorrent_dir_install }}/conf"
