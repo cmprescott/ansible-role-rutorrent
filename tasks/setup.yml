@@ -5,7 +5,7 @@
 - name: download rutorrent src
   get_url:
     url: "{{ rutorrent_download_url }}"
-    dest: "{{ rutorrent_download_dest }}/{{ rutorrent_version }}.tar.gz"
+    dest: "{{ rutorrent_download_dest }}"
 
 
 - name: ensure install directory exists
@@ -17,7 +17,6 @@
 
 - name: ensure untarred files to install directory
   sudo: Yes
-  command: tar xvf {{ rutorrent_version }}.tar.gz -C {{ rutorrent_dir_install }} --strip-components=1
+  command: tar xvf {{ rutorrent_download_dest }} -C {{ rutorrent_dir_install }} --strip-components=1
   args:
-    chdir: "{{ rutorrent_download_dest }}"
     creates: "{{ rutorrent_dir_install }}/conf"
