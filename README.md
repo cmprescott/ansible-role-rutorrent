@@ -21,7 +21,7 @@ rutorrent_version: rutorrent-3.6
 # download
 # -------------
 rutorrent_download_url: http://dl.bintray.com/novik65/generic/{{ rutorrent_version }}.tar.gz
-rutorrent_download_dest: ~/Downloads
+rutorrent_download_dest: /tmp
 # -------------
 # dir settings
 # -------------
