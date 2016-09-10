@@ -1,3 +1,5 @@
 - hosts: localhost 
   roles:
-    - role: ../../ansible-role-rutorrent
+    - name: "Ensure installed & configured rutorrent"
+      role: ../../ansible-role-rutorrent
+      become: Yes
