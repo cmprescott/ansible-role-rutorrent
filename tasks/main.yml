@@ -4,30 +4,27 @@
   stat: "path={{ rutorrent_dir_install }}/conf"
   register: rutorrent_conf
 
-- name: download rutorrent src
-  get_url:
-    url: "{{ rutorrent_download_url }}"
-    dest: "{{ rutorrent_download_dest }}"
+# -------------
+# Install rutorrent
+# -------------
+- name: "all | ensure install directory exists"
+  file: path="{{ rutorrent_dir_install }}" state=directory
   when: not rutorrent_conf.stat.exists
 
-- name: ensure install directory exists
-  file:
-    path: "{{ rutorrent_dir_install }}"
-    state: directory
-  when: not rutorrent_conf.stat.exists
+- name: "all | clone rutorrent repo"
+  git: 
+    repo: "{{ rutorrent_repo }}" 
+    dest: "{{ rutorrent_dir_install }}" 
+    version: "{{ rutorrent_version }}" 
+    update: "{{ rutorrent_force_udpate }}"
 
-- name: ensure untarred files to install directory
-  command: tar xvf {{ rutorrent_download_dest }} -C {{ rutorrent_dir_install }} --strip-components=1
-  args:
-    creates: "{{ rutorrent_dir_install }}/conf"
-  when: not rutorrent_conf.stat.exists
+# -------------
+# Config rutorrent
+# -------------
+- name: "all | ensure we have bin locations set by template"
+  template: src="config.php.j2" dest="{{ rutorrent_dir_install }}/conf/config.php"
 
-- name: ensure we have bin locations set by template
-  template:
-    src: config.php.j2
-    dest: "{{ rutorrent_dir_install }}/conf/config.php"
-
-- name: ensure www-data owns all files in install directory
+- name: "all | ensure www-data/nginx owns all files in install directory"
   file:
     path: "{{ rutorrent_dir_install }}"
     state: directory

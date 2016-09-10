@@ -23,12 +23,10 @@ Role Variables
 --------------
 
 ```yaml
-# ----- version -----
-rutorrent_version: rutorrent-3.6
-
-# ----- download -----
-rutorrent_download_url: http://dl.bintray.com/novik65/generic/{{ rutorrent_version }}.tar.gz
-rutorrent_download_dest: /tmp/{{ rutorrent_version }}.tar.gz
+# ----- install -----
+rutorrent_repo: https://github.com/Novik/ruTorrent.git
+rutorrent_version: master
+rutorrent_force_udpate: no
 
 # ----- dir settings -----
 rutorrent_dir_install: /var/www/rutorrent
