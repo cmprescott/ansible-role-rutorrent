@@ -7,18 +7,26 @@ Downloads and installs the rutorrent php code. Templates config.php.
 Requirements
 ------------
 
-Unix system with php, and a webserver.
+```shell
+# Ansible version 2.0.0.2+
+ansible --version
+
+# OS
+case $OSTYPE in
+  # Linux needs apt
+  "linux"*)
+      apt --version;;
+esac
+```
 
 Role Variables
 --------------
 
 ```yaml
-# ----- version -----
-rutorrent_version: rutorrent-3.6
-
-# ----- download -----
-rutorrent_download_url: http://dl.bintray.com/novik65/generic/{{ rutorrent_version }}.tar.gz
-rutorrent_download_dest: /tmp/{{ rutorrent_version }}.tar.gz
+# ----- install -----
+rutorrent_repo: https://github.com/Novik/ruTorrent.git
+rutorrent_version: master
+rutorrent_force_udpate: no
 
 # ----- dir settings -----
 rutorrent_dir_install: /var/www/rutorrent
@@ -31,7 +39,6 @@ rutorrent_path_curl: /usr/bin/curl
 rutorrent_path_gzip:
 rutorrent_path_id: /usr/bin/id
 rutorrent_path_stat: /usr/bin/stat
-
 ```
 
 Dependencies
