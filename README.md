@@ -7,7 +7,17 @@ Downloads and installs the rutorrent php code. Templates config.php.
 Requirements
 ------------
 
-Unix system with php, and a webserver.
+```shell
+# Ansible version 2.0.0.2+
+ansible --version
+
+# OS
+case $OSTYPE in
+  # Linux needs apt
+  "linux"*)
+      apt --version;;
+esac
+```
 
 Role Variables
 --------------
@@ -31,7 +41,6 @@ rutorrent_path_curl: /usr/bin/curl
 rutorrent_path_gzip:
 rutorrent_path_id: /usr/bin/id
 rutorrent_path_stat: /usr/bin/stat
-
 ```
 
 Dependencies

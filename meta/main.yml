@@ -3,7 +3,7 @@ galaxy_info:
   author: Prescott Chris
   description: Downloads and installs the rutorrent php code. Templates config.php.
   license: BSD
-  min_ansible_version: 1.4.4
+  min_ansible_version: 2.0.0.2
   platforms:
   - name: GenericUNIX
     versions:
@@ -12,3 +12,4 @@ galaxy_info:
   - monitoring
   - web
 dependencies: []
+...
