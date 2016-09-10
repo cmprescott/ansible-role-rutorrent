@@ -1,15 +1,17 @@
 # ansible-role-rutorrent/tasks/main.yml
 ---
-- name: check for current installation
-  stat: "path={{ rutorrent_dir_install }}/conf"
-  register: rutorrent_conf
+# -------------
+# Install plugin dependencies
+# -------------
+- name: "apt | ensure mediainfo & ffmpeg"
+  apt: name="{{ item }}"
+  with_items: ['mediainfo', 'ffmpeg']
 
 # -------------
 # Install rutorrent
 # -------------
 - name: "all | ensure install directory exists"
   file: path="{{ rutorrent_dir_install }}" state=directory
-  when: not rutorrent_conf.stat.exists
 
 - name: "all | clone rutorrent repo"
   git: 
