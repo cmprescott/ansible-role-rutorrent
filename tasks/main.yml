@@ -6,6 +6,12 @@
 - name: "apt | ensure mediainfo & ffmpeg"
   apt: name="{{ item }}"
   with_items: ['mediainfo', 'ffmpeg']
+  when: ansible_pkg_mgr == 'apt'
+
+- name: "pkg | ensure mediainfo & ffmpeg"
+  pkgng: name="{{ item }}" state=present
+  with_items: ['mediainfo', 'ffmpeg']
+  when: ansible_pkg_mgr == 'pkgng'
 
 # -------------
 # Install rutorrent
