@@ -16,6 +16,9 @@ case $OSTYPE in
   # Linux needs apt
   "linux"*)
       apt --version;;
+  # FreeBSD needs pkg
+  "freebsd"*)
+      pkgng --version;;      
 esac
 ```
 
